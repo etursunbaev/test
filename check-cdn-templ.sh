@@ -10,12 +10,12 @@ ID=(cat /tmp/abc)
 declare -a arr=($ID)
 for i in "${arr[@]}"
 do
-out=`sudo subutai import id:$i`
+out=`sudo subutai-master import id:$i`
 if [ "$?" == 0 ]; then
        echo "$i - success $out" >> /tmp/success.log
 else
        echo "$i - failed $out" >> /tmp/error.log
 fi
-template=`sudo subutai list -t | sed -n '3p'`
-sudo subutai destroy $template
+template=`sudo subutai-master list -t | sed -n '3p'`
+sudo subutai-master destroy $template
 done
