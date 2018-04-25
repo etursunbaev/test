@@ -6,11 +6,11 @@ curl https://mastercdn.subutai.io:8338/kurjun/rest/template/list | python -m jso
 
 echo "" > /tmp/error.log
 echo "" > /tmp/success.log
-ID=(`cat "/tmp/abc"`)
+ID=( $(cat "/tmp/abc") )
 
-echo $ID
+echo ${ID[@]}
 unset arr
-declare -a arr=(${ID})
+declare -a arr=(${ID[@]})
 for i in "${arr[@]}"
 do
 out=`sudo subutai-master -d import id:$i`
