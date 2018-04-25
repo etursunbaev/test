@@ -2,7 +2,7 @@
 
 sudo ln -s /snap/bin/subutai-master /usr/bin
 
-curl https://mastercdn.subutai.io:8338/kurjun/rest/template/list | python -m json.tool | grep id | sed 's,"id": ",,g' | sed 's,",,g' | sed s/,//g > /tmp/abc
+curl https://mastercdn.subutai.io:8338/kurjun/rest/template/list | python -m json.tool | grep id | sed 's/^[ \t]*//' | sed 's,"id": ",,g' | sed 's,",,g' | sed s/,//g > /tmp/abc
 cat /tmp/abc
 
 echo "" > /tmp/error.log
