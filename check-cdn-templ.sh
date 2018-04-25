@@ -2,7 +2,6 @@
 
 sudo ln -s /snap/bin/subutai-master /usr/bin
 
-set -e
 curl https://mastercdn.subutai.io:8338/kurjun/rest/template/list | python -m json.tool | grep id | sed 's,"id": ",,g' | sed 's,",,g' | sed s/,//g > /tmp/abc
 cat /tmp/abc
 
@@ -12,7 +11,7 @@ ID=(cat /tmp/abc)
 declare -a arr=($ID)
 for i in "${arr[@]}"
 do
-out=`sudo subutai-master import id:$i`
+out=`sudo subutai-master -d import id:$i`
 if [ "$?" == 0 ]; then
        echo "$i - success $out" >> /tmp/success.log
 else
